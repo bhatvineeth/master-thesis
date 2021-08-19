@@ -1,20 +1,27 @@
 version: '3.8'
 services:
+    client:
+      container_name: client
+      build:
+        context: ./ngx-remote-desktop-master
+      expose:
+        - "9999"
+      ports:
+        - "9999:9999"
     guacd:
       container_name: guacd
       image: glyptodon/guacd
-      environment: ACCEPT_EULA=Y
+      environment: 
+        ACCEPT_EULA: "Y"
       expose:
         - "4822"
       ports:
         - "4822:4822"
-      network_mode: bridge
     server:
       build: 
         context: ./guacamole-test-server-master
       container_name: server
       expose:
-        - "8080"		
+        - "8080"
       ports:
         - "8080:8080"
-      network_mode: bridge

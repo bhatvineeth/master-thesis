@@ -1,1 +1,8 @@
 .DS_Store
+.vscode/launch.json
+.vscode/tasks.json
+guacamole-test-server-master/.settings/org.eclipse.jdt.apt.core.prefs
+guacamole-test-server-master/.settings/org.eclipse.jdt.core.prefs
+guacamole-test-server-master/.settings/org.eclipse.m2e.core.prefs
+guacamole-test-server-master/.classpath
+guacamole-test-server-master/.project
