@@ -1,0 +1,14 @@
+{
+  "name": "guacamole-server",
+  "version": "1.0.0",
+  "description": "Guacamole server to connect to guacd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vineeth",
+  "license": "ISC",
+  "dependencies": {
+    "guacamole-lite": "^0.6.4"
+  }
+}
