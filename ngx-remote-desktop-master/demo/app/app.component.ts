@@ -7,7 +7,6 @@ import * as FileSaver from 'file-saver';
 
 import { RemoteDesktopManager } from '../../src/services';
 import { ClipboardModalComponent } from './components';
-import { randomBytes, createCipheriv } from 'crypto-browserify';
 
 @Component({
     selector: 'app-root',
@@ -68,40 +67,31 @@ export class AppComponent implements OnInit {
         }, () => this.manager.setFocused(true));
     }
 
-    ngOnInit() {
-			const encrypt = (value) => {
-				const iv = randomBytes(16);
-				const cipher = createCipheriv('AES-256-CBC', 'MySuperSecretKeyForParamsToken12', iv);
-		
-				let crypted = cipher.update(JSON.stringify(value), 'utf8', 'base64');
-				crypted += cipher.final('base64');
-		
-				const data = {
-						iv: iv.toString('base64'),
-						value: crypted
-				};
-				return Buffer.from(JSON.stringify(data)).toString('base64');
-		};
+    handleConnect() {
+        const parameters = {
+						hostname: '192.168.0.103',
+						username:'vineeth',
+						password:'vineeth',
+            port: 5900,
+						type: 'vnc',
+            image: 'image/png',
+            audio: 'audio/L16',
+            dpi: 96,
+            width: window.screen.width,
+            height: window.screen.height,
+						security: 'any',
+						'ignore-cert': true
+        };
+        /*
+         * The manager will establish a connection to: 
+         * ws://localhost:8080?ws?ip={address}&image=image/png&audio=audio/L16&dpi=96&width=n&height=n
+         */
+        this.manager.connect(parameters);
+    }
 
-		const connectionString = encrypt(
-			{
-				"connection":{
-					"type":"vnc",
-					"settings":{
-						"hostname":"192.168.0.103",
-						"port":"5900",
-						"username":"vineeth",
-						"password":"vineeth",
-						"security": "any",
-						"ignore-cert": true,
-						"width": "1680",
-						"height": "1050"
-					}
-				}
-			});
-			
+    ngOnInit() {
         // Setup tunnel. The tunnel can be either: WebsocketTunnel, HTTPTunnel or ChainedTunnel
-        const tunnel = new WebSocketTunnel(`wss://localhost:8080/?token=${connectionString}`);
+        const tunnel = new WebSocketTunnel('ws://0.0.0.0:8080/ws?hostname=192.168.0.103&port=5900&type=rdp&width=1024&height=768&audio=audio/L16');
 				
 
         /**
@@ -109,7 +99,7 @@ export class AppComponent implements OnInit {
          *  passing in the tunnel
          */
         this.manager = new RemoteDesktopManager(tunnel);
-        this.manager.connect();
+        this.handleConnect();
         this.manager.onRemoteClipboardData.subscribe(text => {
             const snackbar = this.snackBar.open('Received from remote clipboard', 'OPEN CLIPBOARD', {
                 duration: 1500,

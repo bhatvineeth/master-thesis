@@ -20,7 +20,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "dist",
     "lib": ["es6", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+		"esModuleInterop":true
   },
   "files": [
     "src/declarations.d.ts",
@@ -35,6 +36,7 @@
 		"useWebpackText": true,
 		"useTranspileModule": true,
 		"doTypeCheck": true,
-		"forkChecker": true
+		"forkChecker": true,
+		"esModuleInterop":true
 		}
 }
