@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+				.login{background-color: #4e6ff0; border-color: #4e6ff0;}
+    </style>
+		<div>
+			<img style="display: block; margin-left: auto; margin-right: auto;" src="./public/images/FRA-UAS_Logo.png" alt="FRA-UAS">
+		</div>
+		<h2 style="text-align: center;">Remote Desktop Connection</h2>
+</head>
+<body>
+<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
+
+    <h2><span class="fa fa-sign-in"></span> Login</h2>
+
+    <!-- LOGIN FORM -->
+    <form action="/connect" method="get">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username" value="<%- username -%>">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password" value="<%- password -%>">
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg login">Login</button>
+    </form>
+    <hr>
+    <p>Do not have an account? <a href="/signup">Create Account</a></p>
+</div>
+</div>
+</body>
+</html>
