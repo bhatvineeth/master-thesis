@@ -1070,6 +1070,8 @@ echo system\extern\apps\eyeX\themes\default\icons\48x48\eyeCalendar.png
 "docs\libraries\OptiPNG\optipng.exe" -fix -o5 -out "system\extern\apps\eyeX\themes\default\icons\48x48\eyeCalendar.png" -quiet "system\extern\apps\eyeX\themes\default\icons\48x48\eyeCalendar.png"
 echo system\extern\apps\eyeX\themes\default\icons\48x48\eyeChess.png
 "docs\libraries\OptiPNG\optipng.exe" -fix -o5 -out "system\extern\apps\eyeX\themes\default\icons\48x48\eyeChess.png" -quiet "system\extern\apps\eyeX\themes\default\icons\48x48\eyeChess.png"
+echo system\extern\apps\eyeX\themes\default\icons\48x48\eyeDaas.png
+"docs\libraries\OptiPNG\optipng.exe" -fix -o5 -out "system\extern\apps\eyeX\themes\default\icons\48x48\eyeDaas.png" -quiet "system\extern\apps\eyeX\themes\default\icons\48x48\eyeDaas.png"
 echo system\extern\apps\eyeX\themes\default\icons\48x48\eyeConsole.png
 "docs\libraries\OptiPNG\optipng.exe" -fix -o5 -out "system\extern\apps\eyeX\themes\default\icons\48x48\eyeConsole.png" -quiet "system\extern\apps\eyeX\themes\default\icons\48x48\eyeConsole.png"
 echo system\extern\apps\eyeX\themes\default\icons\48x48\eyeContacts.png

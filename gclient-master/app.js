@@ -57,7 +57,38 @@ baserouter.get("/", function (req, res) {
 });
 
 baserouter.get("/signup", function (req, res) {	
-	res.render(__dirname + '/signup.ejs');
+	res.render(__dirname + '/signup.ejs', {username : '', password: '', hostname: '', port: '', systemUsername: '', systemPassword: '', connection: ''});
+});
+
+baserouter.get("/register", function (req, res) {	
+	var url_parts = url.parse(req.url, true);
+	var query = url_parts.query;
+
+	var userData = {};
+	userData[query.username] = {"connection":{
+		"type":query.connection,
+		"settings":{
+			"hostname":query.hostname,
+			"port":query.port,
+			"username":query.systemUsername,
+			"password":query.systemPassword,
+			"security": "any",
+			"ignore-cert": true,
+			"enable-stfp":"fasle"
+		}
+	}
+}
+
+	var userData_stre = JSON.stringify(userData);
+	userData_stre = userData_stre.substring(1,userData_stre.length-1);
+	var tempData = JSON.stringify(credentials);
+	tempData = tempData.substring(1,tempData.length-1);
+	tempData = "{"+tempData+","+userData_stre+"}";
+
+	fs.writeFile('./credentials.json', tempData, 'utf8' ,function (err) {
+		if (err) return console.log(err);
+		res.render(__dirname + '/login.ejs', {username : '', password: ''});
+	});
 });
 
 baserouter.get("/connect", function (req, res) {
